@@ -17,7 +17,7 @@
  * 
  * @section program_section Program Information 
  * 
- * @details 
+ * @details Program to demonstrate implementation of a phone book by hash table
  *
  * @section compile_section Compiling and Usage 
  *
@@ -33,56 +33,69 @@
    @verbatim 
    Date          Modification 
    ------------  -------------------------------------------------------------- 
-   Oct 29, 2021  Started Creation
+   Oct 29, 2021  Finished HashTable implementation
+   Oct 30, 2021  Adding phone book implementation to hash table
+   Nov 01, 2021  Fixed implementation of insert and remove functions
+   Nov 03, 2021  Finished implementing resize function
+   Nov 04, 2021  Verified functionality of hash table implementation
    @endverbatim
  *
  *****************************************************************************/
 #include "HashTable.h"
 
-/**************************************************************************/ /**
+/**************************************************************************/ /*
  * @author Brandon Amundson
  *
  * @par Description:
- * This function creates the list by setting the root of the Tree to nullptr
+ * This function is the main function that runs the program.
  *
  *****************************************************************************/
 int main()
 {
 	HashTable hash;
-	int k;
-	string v;
+	std::string k;
+	std::string v;
 	int choice = 0;
-	while (choice != 4)
+	while (choice != 5)
 	{
-		cout << "1.Insert element into the table" << endl;
-		cout << "2.Search element from the key" << endl;
-		cout << "3.Delete element at a key" << endl;
-		cout << "4.Exit" << endl;
-		cout << "Enter your choice: ";
-		cin >> choice;
+		std::cout << "1. Insert element into the phone book" << std::endl;
+		std::cout << "2. Search element by name" << std::endl;
+		std::cout << "3. Delete element by name" << std::endl;
+		std::cout << "4. Resize the book" << std::endl;
+		std::cout << "5. Exit" << std::endl;
+		std::cout << "Enter your choice: ";
+		std::cin >> choice;
 		switch (choice)
 		{
 		case 1:
-			cout << "Enter element value to be inserted: ";
-			cin >> v;
-			cout << "Enter key at which element to be inserted: ";
-			cin >> k;
+			std::cout << "Enter phone number to be inserted: ";
+			std::cin >> v;
+			std::cout << "Enter name to be inserted with phone number: ";
+			std::cin >> k;
 			hash.insert(k, v);
 			break;
 		case 2:
-			cout << "Enter key of the element to be searched: ";
-			cin >> k;
+			std::cout << "Enter name to be searched: ";
+			std::cin >> k;
 			hash.searchKey(k);
 			break;
 		case 3:
-			cout << "Enter key of the element to be deleted: ";
-			cin >> k;
+			std::cout << "Enter name to be deleted: ";
+			std::cin >> k;
 			hash.remove(k);
 			break;
 		case 4:
+			int g;
+			std::cout << "The current size of the phone book is: "
+				<< hash.getTS() << std::endl;
+			std::cout << "What size do you wish to resize the phone book to? ";
+			std::cin >> g;
+			hash.resize(g);
+			break;
+		case 5:
 			break;
 		default:
-			cout << "\nEnter correct option\n";
+			std::cout << "\nEnter valid option\n";
 		}
 	}
 	return 0;
